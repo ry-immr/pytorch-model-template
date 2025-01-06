@@ -44,10 +44,11 @@ def main():
     torch.backends.cudnn.benchmark = False
 
     # preprocessing
-    transform = torchvision.transforms.Compose([])
+    train_transform = torchvision.transforms.Compose([])
+    test_transform = torchvision.transforms.Compose([])
 
-    train_dataset = datasets.MockDataset(transform=transform)
-    test_dataset = datasets.MockDataset(transform=transform)
+    train_dataset = datasets.MockDataset(transform=train_transform)
+    test_dataset = datasets.MockDataset(transform=test_transform)
 
     train_loader = torch.utils.data.DataLoader(
         train_dataset,
