@@ -1,6 +1,5 @@
 import torch
 from torchvision import transforms
-from skimage import transform
 import numpy as np
 
 
@@ -18,19 +17,6 @@ def _rotate_flip(org_img, p):
 
 
 class RotateFlip(object):
-    def __call__(self, sample):
+    def __call__(self, img):
         p = torch.randint(0, 8, (1,))
-        sample["img"] = _rotate_flip(sample["img"], p)
-        return sample
-
-
-def _to_tensor(img):
-    img = img.transpose((2, 0, 1))
-    return torch.from_numpy(img).float()
-
-
-class ToTensor(object):
-    """Convert ndarrays in sample to Tensors."""
-
-    def __call__(self, sample):
-        return {k: _to_tensor(sample[k]) for k in sample}
+        return _rotate_flip(img, p)
