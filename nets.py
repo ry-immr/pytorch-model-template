@@ -10,7 +10,6 @@ class MockNetwork(nn.Module):
         super(MockNetwork, self).__init__()
         self.p = nn.Parameter(torch.zeros((1)))
 
-
     def forward(self, x):
         x = self.p * x
         return x
